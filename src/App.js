@@ -11,14 +11,14 @@ import { auth, createUserProfileDocument } from './firebase/firebase.utils'
 
 class App extends React.Component {
   constructor() {
-    super()
+    super();
 
     this.state = {
       currentUser: null
-    }
+    };
   }
 
-  unsubscribeFromAuth = null
+  unsubscribeFromAuth = null;
 
   componentDidMount() {
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
@@ -32,8 +32,6 @@ class App extends React.Component {
               ...snapShot.data()
             }
           })
-
-          console.log(this.setState)
         })
       }
 
@@ -51,12 +49,12 @@ class App extends React.Component {
         <Header currentUser={this.state.currentUser} />
         <Switch>
           <Route exact path='/' component={HomePage} />
-          <Route exact path='/shop' component={ShopPage} />
-          <Route exact path='/signin' component={SignInAndSignUpPage} />
-        </Switch>      
+          <Route path='/shop' component={ShopPage} />
+          <Route path='/signin' component={SignInAndSignUpPage} />
+        </Switch>
       </div>
     )
-  }  
+  }
 }
 
 export default App;
